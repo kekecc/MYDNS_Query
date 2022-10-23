@@ -1,7 +1,7 @@
 src/CMakeFiles/main.dir/main.cpp.o: \
  /home/kk/Desktop/socket/DNS_Query/src/main.cpp \
  /usr/include/stdc-predef.h \
- /home/kk/Desktop/socket/DNS_Query/src/../include/dns.h \
+ /home/kk/Desktop/socket/DNS_Query/include/dns.h \
  /usr/include/c++/12.2.0/cstddef \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/os_defines.h \

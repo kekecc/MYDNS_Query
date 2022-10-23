@@ -94,7 +94,7 @@ class DNS_Message {
       } 
       ~DNS_Message() {};
       
-      int GetIP(const string host, string nameserver); //默认 A类型
+      int GetIP(const string host, string nameserver, int type); //默认 A类型
       int GetIPbyNS(const string host, string nameserver);//默认 NS类型
       int HostToFormat(string host, unsigned char* format);
       int FormatToHost(unsigned char* format);

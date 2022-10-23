@@ -45,7 +45,7 @@ int DNS_Message::FormatToHost(unsigned char *format) {
     return 0;
 }
 
-int DNS_Message::GetIP(const string host, string nameserver) {
+int DNS_Message::GetIP(const string host, string nameserver, int type) {
     int client_fd; //socket 连接
     struct sockaddr_in destination;
     Header* header; //头部
@@ -99,7 +99,7 @@ int DNS_Message::GetIP(const string host, string nameserver) {
     bufferlen += (strlen((char*) Qname) + 1); 
 
     question = (Question*)(buffer + bufferlen); //buffer中属于问题部分的字段
-    question->Qtype = htons(1); //表示A记录 取ip地址
+    question->Qtype = htons(type); //表示A记录 取ip地址
     question->Qclass = htons(1); //internet数据
     bufferlen += sizeof(Question); 
     
@@ -336,7 +336,25 @@ void DNS_Message::PrintTheAnswer() {
             cout << (int)(MyDNS.DNS_Answer[i].Rdata[MyDNS.DNS_Answer[i].Rlen - 1]) << endl;
         } else {
             cout << MyDNS.DNS_Answer[i].Rdata << endl;
+        }   
+    }
+
+    for (int i = 0; i < MyDNS.DNS_Header.AdditionalRRs; i++) {
+        cout << endl;
+        cout << "Additional:" << i + 1 << endl; 
+        cout << "name :" << MyDNS.DNS_Additional[i].Rname << endl;
+        cout << "type :" << MyDNS.DNS_Additional[i].Rtype << endl;
+        cout << "class :" << MyDNS.DNS_Additional[i].Rclass << endl;
+        cout << "len :" << MyDNS.DNS_Additional[i].Rlen << endl;
+        cout << "ttl :" << MyDNS.DNS_Additional[i].Ttl << endl;
+        cout << "data :" ;
+        if (MyDNS.DNS_Additional[i].Rtype == 1) {
+            for (int j = 0; j < MyDNS.DNS_Additional[i].Rlen - 1; j++) {
+                cout << (int)(MyDNS.DNS_Additional[i].Rdata[j]) << "." ;
+            }
+            cout << (int)MyDNS.DNS_Additional[i].Rdata[MyDNS.DNS_Additional[i].Rlen -1] << endl;
+        } else {
+            cout << MyDNS.DNS_Additional[i].Rdata << endl;
         }
-        
     }
 }
