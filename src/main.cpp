@@ -3,7 +3,7 @@
 #include <netinet/in.h>
 
 int main(int argc, const char *argv[]) {
-   string ip = "1.1.1.1"; //默认
+   string ip = "192.168.1.1"; //默认
    //string domain = "www.baidu.com";
 
    //./main mydig google.com 
@@ -19,7 +19,10 @@ int main(int argc, const char *argv[]) {
    //./main mydig -x google.com
    if (argc == 4) {
       if (strcmp("+trace", argv[2]) == 0) {
-         
+         DNS_Message dns1(1);
+         dns1.GetIP("", ip, 2);
+         dns1.PrintTheAnswer();
+         dns.GetIP(argv[3], ip, 1);
       } else if (strcmp("-x", argv[2]) == 0) {
          dns.GetIP(string(argv[3]) + ".in-addr.arpa", ip, 12);
       } else {
