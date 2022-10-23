@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/main.dir/dns.cpp.o CMakeFiles/main.dir/main.cpp.o -o /home/kk/Desktop/socket/DNS_Query/bin/main 
